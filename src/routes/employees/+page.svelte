@@ -1,11 +1,18 @@
 <script lang="ts">
 	/** @type {import('./$types').PageProps} */
 	export let data: any; // Recevoir les utilisateurs passés en prop
-	console.log('Users received:', data);
 
 	import { Container, Table } from '@sveltestrap/sveltestrap';
 	import Search from './Search.svelte';
 	import dayjs from 'dayjs';
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+
+	let showTable = false;
+
+	onMount(() => {
+		showTable = true;
+	});
 
 	const originalUsers = data.users;
 
@@ -30,59 +37,74 @@
 					data.users = originalUsers;
 				}, 3000);
 			}
-			// si rien dans la recherche => 
-		} else { 
+			// si rien dans la recherche =>
+		} else {
 			data.users = originalUsers;
 		}
 	};
 </script>
 
-<Container md class="text-center">
-	<h1 class="my-5">Liste des employés</h1>
+{#if showTable}
 
-	<Search onSearch={filterUsers} />
+	<div in:fade={{ delay: 250, duration: 1100 }}>
 
-	{#if data.users && data.users.length > 0}
-		<Table striped responsive bordered class="mt-5">
-			<thead>
-				<tr>
-					<th scope="col">id</th>
-					<th scope="col">prénom</th>
-					<th scope="col">nom</th>
-					<th scope="col">âge</th>
-					<th scope="col">genre</th>
-					<th scope="col">email</th>
-					<th scope="col">date de naissance</th>
-					<th scope="col">service</th>
-					<th scope="col">téléphone</th>
-					<th scope="col">ville</th>
-					<th scope="col">supprimer</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each data.users as user}
-					<tr>
-						<th scope="row">{user.id}</th>
-						<td>{user.firstName}</td>
-						<td>{user.lastName.toUpperCase()}</td>
-						<td>{user.age}</td>
-						<td>{user.gender == 'male' ? 'homme' : 'femme'}</td>
-						<td>{user.email}</td>
-						<td>{dayjs(user.birthDate).format('DD/MM/YYYY')}</td>
-						<td>{user.company.department}</td>
-						<td>0{Math.floor(Math.random() * 900000000) + 100000000}</td>
-						<td>{user.address.city}</td>
-						<td class="text-right">
-							<button class="btn btn-sm btn-secondary" on:click={() => deleteUser(user)}>
-								<i class="fa fa-trash" aria-hidden="true"></i>
-							</button>
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</Table>
-	{:else}
-		<i class="fa-solid fa-user-slash fa-5x mt-5"></i>
-		<p class="fs-2 my-5">Aucun utilisateur trouvé.</p>
-	{/if}
-</Container>
+		<Container md class="text-center">
+
+			<h1 class="my-5">Liste des employés</h1>
+
+			<Search onSearch={filterUsers} />
+
+			{#if showTable && data.users && data.users.length > 0}
+				<Table striped responsive bordered class="mt-5">
+					<thead>
+						<tr>
+							<th scope="col">id</th>
+							<th scope="col">prénom</th>
+							<th scope="col">nom</th>
+							<th scope="col">âge</th>
+							<th scope="col">genre</th>
+							<th scope="col">email</th>
+							<th scope="col">date de naissance</th>
+							<th scope="col">service</th>
+							<th scope="col">téléphone</th>
+							<th scope="col">ville</th>
+							<th scope="col">supprimer</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each data.users as user}
+							<tr>
+								<th scope="row">{user.id}</th>
+								<td>{user.firstName}</td>
+								<td>{user.lastName.toUpperCase()}</td>
+								<td>{user.age}</td>
+								<td>{user.gender == 'male' ? 'homme' : 'femme'}</td>
+								<td>{user.email}</td>
+								<td>{dayjs(user.birthDate).format('DD/MM/YYYY')}</td>
+								<td>{user.company.department}</td>
+								<td>0{Math.floor(Math.random() * 900000000) + 100000000}</td>
+								<td>{user.address.city}</td>
+								<td class="text-right">
+									<button class="btn btn-sm btn-secondary" on:click={() => deleteUser(user)}>
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</Table>
+
+			{:else}
+				<i class="fa-solid fa-user-slash fa-5x mt-5"></i>
+				<p class="fs-2 my-5">Aucun utilisateur trouvé.</p>
+			{/if}
+			
+		</Container>
+	</div>
+{/if}
+
+<style>
+	h1 {
+		color: #ff3d01;
+	}
+</style>

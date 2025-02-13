@@ -9,5 +9,5 @@
 </script>
 
 <div class="search p-2">
-    <input class="form-control" type="text" placeholder="Rechercher un employé..." on:input={onInput} />
+    <input class="form-control w-50 mx-auto" type="text" placeholder="Rechercher un employé" on:input={onInput} />
 </div>
