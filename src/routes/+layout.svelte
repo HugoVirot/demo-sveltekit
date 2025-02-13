@@ -31,11 +31,14 @@
 	<Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
 	  <Nav class="ms-auto" navbar>
 		<NavItem>
-		  <NavLink href="/">home</NavLink>
+		  <NavLink href="/">accueil</NavLink>
 		</NavItem>
 		<NavItem>
-		  <NavLink href="/login">login</NavLink>
+		  <NavLink href="/stats">statistiques</NavLink>
 		</NavItem>
+		<NavItem>
+			<NavLink href="/login">login</NavLink>
+		  </NavItem>
 		<NavItem>
 		  <NavLink href="/employees">employés</NavLink>
 		</NavItem>
