@@ -14,7 +14,7 @@
 	<Row>
 		<Col class="text-center">
 			<a href="/stats">
-				<Button color="secondary" outline size="lg">statistiques</Button>
+				<Button color="secondary" outline size="lg" class="mb-2 mb-md-0">statistiques</Button>
 			</a>
 		</Col>
 		<Col>

@@ -46,7 +46,7 @@
 </script>
 
 {#if showTable}
-	<div in:fade={{ delay: 250, duration: 1100 }}>
+	<div in:fade={{ delay: 100, duration: 900 }}>
 		<Container md class="text-center">
 			<h1 class="my-5">Liste des employés</h1>
 

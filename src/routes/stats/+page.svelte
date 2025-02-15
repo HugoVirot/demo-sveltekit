@@ -142,19 +142,19 @@
 </script>
 
 <Container class="text-center">
-	<h1 in:fade={{ delay: 250, duration: 1100 }} class="my-5">Statistiques</h1>
-	<canvas class="canvas1 mx-auto" in:fade={{ delay: 250, duration: 1100 }} bind:this={chartCanvas}
+	<h1 in:fade={{ delay: 100, duration: 900 }} class="my-5">Statistiques</h1>
+	<canvas class="canvas1 mx-auto" in:fade={{ delay: 250, duration: 900 }} bind:this={chartCanvas}
 	></canvas>
 
 	<canvas
 		class="canvas2 mx-auto mt-5"
-		in:fade={{ delay: 250, duration: 1100 }}
+		in:fade={{ delay: 250, duration: 900 }}
 		bind:this={chartCanvas2}
 	></canvas>
 
 	<canvas
 		class="canvas3 mx-auto mt-5"
-		in:fade={{ delay: 250, duration: 1100 }}
+		in:fade={{ delay: 250, duration: 900 }}
 		bind:this={chartCanvas3}
 	></canvas>
 </Container>
