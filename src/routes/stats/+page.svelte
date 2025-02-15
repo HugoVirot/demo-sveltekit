@@ -40,6 +40,7 @@
 			},
 			options: {
 				responsive: true,
+				maintainAspectRatio: false,
 				plugins: {
 					tooltip: {
 						boxWidth: 20, // Set the width of the color box
@@ -76,14 +77,14 @@
 				datasets: [
 					{
 						label: 'ventes pour cet employé (€)',
-						data: [15000, 12500, 14000, 13400, 12900, 16000],
+						data: [15000, 12500, 14000, 13400, 12900, 19000],
 						backgroundColor: [
 							'rgba(200, 200, 250, 0.3)',
 							'rgba(0, 250, 200, 0.3)',
 							'rgba(150, 105, 200, 0.3)',
 							'rgba(155, 205, 255, 0.3)',
 							'rgba(255, 135, 97, 0.3)',
-							'rgba(255, 205, 86, 0.3)',
+							'rgba(255, 205, 86, 0.3)'
 						]
 					}
 				]
@@ -130,7 +131,7 @@
 					},
 					title: {
 						display: true,
-						text: 'Répartition des ventes 2024 par logiciel (en pourcentage)',
+						text: 'Répartition des ventes 2024 par logiciel (en %)',
 						font: {
 							size: 24
 						}
@@ -143,8 +144,11 @@
 
 <Container class="text-center">
 	<h1 in:fade={{ delay: 100, duration: 900 }} class="my-5">Statistiques</h1>
-	<canvas class="canvas1 mx-auto" in:fade={{ delay: 250, duration: 900 }} bind:this={chartCanvas}
-	></canvas>
+
+	<div id="chart1wrapper">
+		<canvas class="canvas1 mx-auto" in:fade={{ delay: 250, duration: 900 }} bind:this={chartCanvas}
+		></canvas>
+	</div>
 
 	<canvas
 		class="canvas2 mx-auto mt-5"
@@ -164,25 +168,41 @@
 		color: #ff3d01;
 	}
 
-	.canvas1, .canvas2, .canvas3 {
+	.canvas1 {
+		min-height: 450px;
+	}
+
+	.canvas2,
+	.canvas3 {
+		min-height: 300px;
+	}
+
+	.canvas1,
+	.canvas2,
+	.canvas3 {
 		width: 100%;
 		max-width: 100%;
 	}
 
 	@media (max-width: 600px) {
-        .canvas1 {
-            width: 90%;
-        }
+		.canvas1 {
+			width: 90%;
+		}
 
-		.canvas2, .canvas3 {
+		.canvas2 {
+			width: 110%;
+			height: 110%;
+		}
+
+		.canvas3 {
+			width: 80%;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.canvas1 {
 			width: 75%;
 		}
-    }
-
-    @media (min-width: 1200px) {
-        .canvas1 {
-            width: 75%;
-        }
 
 		.canvas2 {
 			width: 60%;
@@ -191,5 +211,5 @@
 		.canvas3 {
 			width: 50%;
 		}
-    }
+	}
 </style>
