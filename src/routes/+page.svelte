@@ -26,8 +26,13 @@
 </Container>
 
 <style>
+	:global(h1) {
+		font-family: 'Tahoma';
+	}
+
 	h1 {
 		font-size: 90px;
+		font-style: italic;
 	}
 
 	img {
