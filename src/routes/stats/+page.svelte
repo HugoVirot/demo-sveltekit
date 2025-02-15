@@ -39,6 +39,7 @@
 				]
 			},
 			options: {
+				responsive: true,
 				plugins: {
 					tooltip: {
 						boxWidth: 20, // Set the width of the color box
@@ -76,7 +77,14 @@
 					{
 						label: 'ventes pour cet employé (€)',
 						data: [15000, 12500, 14000, 13400, 12900, 16000],
-						backgroundColor: ['rgba(200, 200, 250, 0.7)', 'rgba(0, 250, 200, 0.7)', 'rgba(150, 105, 200, 0.7)', 'rgba(155, 205, 255, 0.7)', 'rgba(255, 135, 97, 0.7)', 'beige']
+						backgroundColor: [
+							'rgba(200, 200, 250, 0.7)',
+							'rgba(0, 250, 200, 0.7)',
+							'rgba(150, 105, 200, 0.7)',
+							'rgba(155, 205, 255, 0.7)',
+							'rgba(255, 135, 97, 0.7)',
+							'beige'
+						]
 					}
 				]
 			},
@@ -105,7 +113,11 @@
 					{
 						label: 'ventes en %',
 						data: [50, 30, 20],
-						backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 205, 86, 0.7)'],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.7)',
+							'rgba(54, 162, 235, 0.7)',
+							'rgba(255, 205, 86, 0.7)'
+						],
 						hoverOffset: 4
 					}
 				]
@@ -129,19 +141,19 @@
 	});
 </script>
 
-<Container md class="text-center">
+<Container class="text-center">
 	<h1 in:fade={{ delay: 250, duration: 1100 }} class="my-5">Statistiques</h1>
-	<canvas class="w-75 mx-auto" in:fade={{ delay: 250, duration: 1100 }} bind:this={chartCanvas}
+	<canvas class="canvas1 mx-auto" in:fade={{ delay: 250, duration: 1100 }} bind:this={chartCanvas}
 	></canvas>
 
 	<canvas
-		class="w-75 mx-auto mt-5"
+		class="canvas2 mx-auto mt-5"
 		in:fade={{ delay: 250, duration: 1100 }}
 		bind:this={chartCanvas2}
 	></canvas>
 
 	<canvas
-		class="w-75 mx-auto mt-5"
+		class="canvas3 mx-auto mt-5"
 		in:fade={{ delay: 250, duration: 1100 }}
 		bind:this={chartCanvas3}
 	></canvas>
@@ -151,4 +163,33 @@
 	h1 {
 		color: #ff3d01;
 	}
+
+	.canvas1, .canvas2, .canvas3 {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	@media (max-width: 600px) {
+        .canvas1 {
+            width: 90%;
+        }
+
+		.canvas2, .canvas3 {
+			width: 75%;
+		}
+    }
+
+    @media (min-width: 1200px) {
+        .canvas1 {
+            width: 75%;
+        }
+
+		.canvas2 {
+			width: 60%;
+		}
+
+		.canvas3 {
+			width: 50%;
+		}
+    }
 </style>

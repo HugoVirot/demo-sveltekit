@@ -83,9 +83,9 @@
 								<td>{user.company.department}</td>
 								<td>0{Math.floor(Math.random() * 900000000) + 100000000}</td>
 								<td>{user.address.city}</td>
-								<td><a href="/employees/{user.id}"> <i class="fa-solid fa-user"></i></a></td>
+								<td><a href="/employees/{user.id}" aria-label="supprimer"> <i class="fa-solid fa-user"></i></a></td>
 								<td class="text-right">
-									<button class="btn btn-sm btn-secondary" on:click={() => deleteUser(user)}>
+									<button class="btn btn-sm btn-secondary" aria-label="supprimer" on:click={() => deleteUser(user)}>
 										<i class="fa fa-trash" aria-hidden="true"></i>
 									</button>
 								</td>

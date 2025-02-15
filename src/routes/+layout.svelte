@@ -8,11 +8,7 @@
 		Nav,
 		Navbar,
 		NavItem,
-		NavLink,
-		Dropdown,
-		DropdownToggle,
-		DropdownMenu,
-		DropdownItem
+		NavLink
 	} from '@sveltestrap/sveltestrap';
 
 	let isOpen = false;
@@ -20,7 +16,6 @@
 	function handleUpdate(event: any) {
 		isOpen = event.detail.isOpen;
 	}
-
 	const logo: string = '/Svelte_Logo.svg';
 </script>
 
@@ -31,17 +26,18 @@
 	<Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
 		<Nav class="ms-auto" navbar>
 			<NavItem>
-				<NavLink href="/">accueil</NavLink>
+				<NavLink href="/">Accueil</NavLink>
 			</NavItem>
 			<NavItem>
-				<NavLink href="/stats">statistiques</NavLink>
+				<NavLink href="/stats">Statistiques</NavLink>
 			</NavItem>
 			<NavItem>
-				<NavLink href="/employees">employés</NavLink>
+				<NavLink href="/employees">Employés</NavLink>
 			</NavItem>
 		</Nav>
 	</Collapse>
 </Navbar>
+
 {@render children()}
 
 <style>
