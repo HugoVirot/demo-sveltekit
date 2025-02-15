@@ -28,7 +28,8 @@
 				return (
 					user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
 					user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-					user.address.city.toLowerCase().includes(searchTerm.toLowerCase())
+					user.address.city.toLowerCase().includes(searchTerm.toLowerCase()) || 
+					user.company.department.toLowerCase().includes(searchTerm.toLowerCase())
 				);
 			});
 			// si aucun utilisateur ne correspond à la recherche
@@ -45,11 +46,8 @@
 </script>
 
 {#if showTable}
-
 	<div in:fade={{ delay: 250, duration: 1100 }}>
-
 		<Container md class="text-center">
-
 			<h1 class="my-5">Liste des employés</h1>
 
 			<Search onSearch={filterUsers} />
@@ -68,6 +66,7 @@
 							<th scope="col">service</th>
 							<th scope="col">téléphone</th>
 							<th scope="col">ville</th>
+							<th scope="col">profil</th>
 							<th scope="col">supprimer</th>
 						</tr>
 					</thead>
@@ -84,6 +83,7 @@
 								<td>{user.company.department}</td>
 								<td>0{Math.floor(Math.random() * 900000000) + 100000000}</td>
 								<td>{user.address.city}</td>
+								<td><a href="/employees/{user.id}"> <i class="fa-solid fa-user"></i></a></td>
 								<td class="text-right">
 									<button class="btn btn-sm btn-secondary" on:click={() => deleteUser(user)}>
 										<i class="fa fa-trash" aria-hidden="true"></i>
@@ -93,18 +93,16 @@
 						{/each}
 					</tbody>
 				</Table>
-
 			{:else}
 				<i class="fa-solid fa-user-slash fa-5x mt-5"></i>
 				<p class="fs-2 my-5">Aucun utilisateur trouvé.</p>
 			{/if}
-			
 		</Container>
 	</div>
 {/if}
 
 <style>
-	h1 {
+	h1, .fa-user {
 		color: #ff3d01;
 	}
 </style>
