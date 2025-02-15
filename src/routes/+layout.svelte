@@ -31,7 +31,11 @@
 	];
 
 	// Mobile menu click event handler
-	const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
+	const handleMobileIconClick = () => {
+		if (window.innerWidth < 767) {
+			showMobileMenu = !showMobileMenu;
+		}
+	}
 
 	// Media match query handler
 	const mediaQueryHandler = (e: any) => {
